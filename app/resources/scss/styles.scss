@@ -1,0 +1,303 @@
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+  xxxl: 1520px
+);
+
+$bg-page:    #0d1117;
+$bg-header:  #161b22;
+$bg-card:    #1c2128;
+$accent:     #1db954;
+$text-color: #ffffff;
+$text-muted: #8b949e;
+$border-col: #30363d;
+
+$primary:      $accent;
+$secondary:    $text-muted;
+$body-bg:      $bg-page;
+$body-color:   $text-color;
+$border-color: $border-col;
+
+@import "bootstrap/scss/bootstrap";
+
+body {
+  font-family: Arial, sans-serif;
+  color: $text-color;
+}
+
+.navbar-albums {
+  background-color: $bg-header;
+  border-bottom: 1px solid $border-col;
+
+  .navbar-brand {
+    color: $text-color;
+    font-weight: bold;
+  }
+
+  .logo-badge {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: $accent;
+    color: #000;
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 8px;
+    margin-right: 12px;
+    vertical-align: middle;
+  }
+
+  .nav-link {
+    color: $text-muted;
+
+    &:hover { color: $text-color; }
+    &.active { color: $accent; }
+  }
+
+  .btn-load {
+    background-color: $accent;
+    color: #000;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-weight: bold;
+
+    &:hover { opacity: 0.85; }
+  }
+}
+
+.album-card {
+  background-color: $bg-card;
+  border: 1px solid $border-col;
+  border-radius: 12px;
+  color: $text-color;
+  position: relative;
+  overflow: hidden;
+  transition: transform .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .45);
+  }
+
+  .card-img-wrapper {
+  height: 250px; 
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background-color: #000; 
+  }
+
+  .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    padding: 0; 
+  }
+
+  .label {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background-color: $accent;
+    color: #000;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    z-index: 2;
+  }
+
+  .card-title {
+    font-size: 18px;
+    margin: 8px 0 4px;
+  }
+
+  .artist {
+    color: $text-muted;
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+
+  .tracklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-size: 12px;
+      padding: 3px 0;
+      border-bottom: 1px solid $border-col;
+      color: $text-muted;
+
+      &:last-child { border-bottom: none; }
+    }
+  }
+}
+
+@for $i from 1 through 5 {
+  .album-card.card-tone-#{$i} {
+    background-color: adjust-color($bg-card, $lightness: ($i - 1) * 4%);
+  }
+}
+
+.site-footer {
+  border-top: 1px solid $border-col;
+  color: $text-muted;
+
+  .social {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid $border-col;
+    border-radius: 50%;
+    color: $text-color;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    margin-left: 6px;
+
+    &:hover {
+      background-color: $accent;
+      color: #000;
+      border-color: $accent;
+    }
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.spin-icon {
+  display: inline-block;
+  animation: spin 1.2s linear infinite;
+}
+
+#infoModal {
+  .modal-content {
+    background-color: $bg-header;
+    border: 1px solid $border-col;
+    color: $text-color;
+  }
+
+  .modal-header {
+    background-color: $bg-card;
+    border-bottom: 1px solid $border-col;
+  }
+
+  .modal-footer {
+    border-top: 1px solid $border-col;
+  }
+
+  .btn-close { filter: invert(1); }
+}
+
+.toast {
+  background-color: $bg-header;
+  border: 1px solid $border-col;
+  color: $text-color;
+
+  .toast-header {
+    background-color: $bg-card;
+    color: $text-color;
+    border-bottom: 1px solid $border-col;
+  }
+
+  .btn-close { filter: invert(1); }
+}
+
+.popover {
+  background-color: $bg-header;
+  border: 1px solid $border-col;
+  color: $text-color;
+
+  .popover-header {
+    background-color: $bg-card;
+    color: $text-color;
+    border-bottom: 1px solid $border-col;
+    font-weight: bold;
+  }
+
+  .popover-body {
+    background-color: $bg-header;
+    color: $text-color;
+  }
+
+  &.bs-popover-top > .popover-arrow::before,
+  &.bs-popover-top > .popover-arrow::after {
+    border-top-color: $border-col;
+  }
+  &.bs-popover-bottom > .popover-arrow::before,
+  &.bs-popover-bottom > .popover-arrow::after {
+    border-bottom-color: $border-col;
+  }
+  &.bs-popover-start > .popover-arrow::before,
+  &.bs-popover-start > .popover-arrow::after {
+    border-right-color: $border-col;
+  }
+  &.bs-popover-end > .popover-arrow::before,
+  &.bs-popover-end > .popover-arrow::after {
+    border-left-color: $border-col;
+  }
+}
+
+
+.form-control {
+  background-color: $bg-card;
+  color: $text-color;
+  border: 1px solid $border-col;
+
+  &:focus {
+    background-color: $bg-card;
+    color: $text-color;
+    border-color: $accent;
+    box-shadow: 0 0 0 0.25rem rgba($accent, 0.25);
+  }
+
+  &::placeholder {
+    color: $text-muted;
+    opacity: 0.7;
+  }
+}
+
+.form-control::file-selector-button {
+  background-color: $bg-header;
+  color: $text-color;
+  border: none;
+  border-right: 1px solid $border-col;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.form-control:hover::file-selector-button {
+  background-color: $border-col;
+}
+
+.alert-success {
+  background-color: rgba($accent, 0.15); 
+  color: $accent;
+  border: 1px solid $accent;
+}
+
+.alert-danger {
+  background-color: rgba(#dc3545, 0.15);
+  color: #ff6b7a;
+  border: 1px solid #dc3545;
+}
